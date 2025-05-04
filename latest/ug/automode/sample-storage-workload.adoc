@@ -35,6 +35,8 @@ aws eks update-kubeconfig --name "${CLUSTER_NAME}"
 The `StorageClass` defines how EKS Auto Mode will provision EBS volumes.
 
 EKS Auto Mode does not create a `StorageClass` for you. You must create a `StorageClass` referencing `ebs.csi.eks.amazonaws.com` to use the storage capability of EKS Auto Mode.
+Note that the `provisioner` specification `ebs.csi.eks.amazonaws.com` is meant for use only with EKS Auto Mode-enabled clusters and will not work to provision storage capacity for clusters that do not use EKS Auto Mode. 
+`ebs.csi.eks.aws.com` is the intended storage class provisioner for clusters not using EKS Auto Mode. See more examples [here](https://github.com/kubernetes-sigs/aws-ebs-csi-driver/tree/master/examples/kubernetes).
 
 . Create a file named `storage-class.yaml`:
 +
